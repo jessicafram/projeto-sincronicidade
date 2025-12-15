@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocolo Sincronicidade</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="tv-noise" class="hidden"></div>
+
+    <main id="game-container" class="modo-clean">
+
+        <div id="intro-screen" class="text-center">
+            <h1 class="titulo-clean">PROJETO SINCRONICIDADE</h1>
+            <h2 class="subtitulo-clean">Avaliação de Estabilidade Neural - Fase 1</h2>
+
+            <p class="texto-aviso">
+                Por favor, utilize fones de ouvido para a calibragem auditiva.<br>
+                Ao clicar em iniciar, você concorda que não possui histórico de epilepsia ou paranoia severa.
+            </p>
+
+            <button id="btn-iniciar" class="btn-clean">INICIAR SESSÃO</button>
+        </div>
+
+        <div id="terminal-screen" class="hidden">
+            <div id="terminal-content"></div>
+
+            <div id="puzzle-container" class="hidden">
+                <br>
+                <img src="assets/img/carta.png" alt="Manuscrito Cifrado" class="img-pista">
+                <br><br>
+                <p>INSIRA A DATA DO FOGO:</p>
+                <div class="input-line">
+                    <span class="prompt">></span>
+                    <input type="text" id="senha-input" maxlength="4" autocomplete="off">
+                </div>
+                <p id="mensagem-erro" class="hidden">DADOS INCORRETOS. A INSTABILIDADE AUMENTOU.</p>
+            </div>
+
+            <span class="cursor-pisca">_</span>
+        </div>
+
+    </main>
+
+    <script src="js/game.js"></script>
+</body>
+
+</html>
