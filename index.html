@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protocolo Sincronicidade</title>
+    <title>Project Synchronicity</title>
 
     <link rel="stylesheet" href="css/style.css">
 
@@ -20,15 +20,24 @@
     <main id="game-container" class="modo-clean">
 
         <div id="intro-screen" class="text-center">
-            <h1 class="titulo-clean">PROJETO SINCRONICIDADE</h1>
-            <h2 class="subtitulo-clean">Avaliação de Estabilidade Neural - Fase 1</h2>
-
+            <h1 class="titulo-clean">PROJECT SYNCHRONICITY</h1>
+            <h2 class="subtitulo-clean">Neural Stability Assessment - Phase 1</h2>
             <p class="texto-aviso">
-                Por favor, utilize fones de ouvido para a calibragem auditiva.<br>
-                Ao clicar em iniciar, você concorda que não possui histórico de epilepsia ou paranoia severa.
+                Please use headphones for auditory calibration.<br>
+                By clicking initiate, you acknowledge no history of epilepsy or severe paranoia.
             </p>
+            <button id="btn-iniciar" class="btn-clean">INITIATE SESSION</button>
+        </div>
 
-            <button id="btn-iniciar" class="btn-clean">INICIAR SESSÃO</button>
+        <div id="rules-screen" class="screen hidden">
+            <div class="rules-content">
+                <div class="crop-container">
+                    <video id="entity-face" src="assets/img/intro_terror.mp4" loop muted playsinline></video>
+                </div>
+
+                <div id="legenda-container" class="legenda-style"></div>
+
+            </div>
         </div>
 
         <div id="terminal-screen" class="hidden">
@@ -36,17 +45,57 @@
 
             <div id="puzzle-container" class="hidden">
                 <br>
-                <img src="assets/img/carta.png" alt="Manuscrito Cifrado" class="img-pista">
+                <img src="assets/img/carta.png" alt="Cipher Manuscript" class="img-pista">
                 <br><br>
-                <p>INSIRA A DATA DO FOGO:</p>
+                <p>INPUT THE YEAR OF FIRE:</p>
                 <div class="input-line">
                     <span class="prompt">></span>
                     <input type="text" id="senha-input" maxlength="4" autocomplete="off">
                 </div>
-                <p id="mensagem-erro" class="hidden">DADOS INCORRETOS. A INSTABILIDADE AUMENTOU.</p>
+                <p id="mensagem-erro" class="hidden">INVALID DATA. INSTABILITY INCREASED.</p>
+            </div>
+            <span class="cursor-pisca">_</span>
+        </div>
+
+        <div id="desktop-screen" class="hidden mode-desktop">
+
+            <div class="top-bar">
+                <span>SYSTEM_ROOT // USER: 409</span>
+
+                <div id="sanity-container" style="display: flex; align-items: center; gap: 10px;">
+                    <span>SANITY:</span>
+                    <div style="width: 150px; height: 15px; border: 1px solid #33ff00; padding: 2px;">
+                        <div id="sanity-bar"
+                            style="width: 100%; height: 100%; background-color: #33ff00; transition: width 0.5s;"></div>
+                    </div>
+                    <span id="sanity-text">100%</span>
+                </div>
+
+                <span id="relogio">00:00:00</span>
             </div>
 
-            <span class="cursor-pisca">_</span>
+            <div class="desktop-area">
+                <div class="icon-folder" onclick="abrirPastaConfidencial()"> <img
+                        src="https://cdn-icons-png.flaticon.com/512/3767/3767084.png" width="50">
+                    <p>CONFIDENTIAL</p>
+                </div>
+            </div>
+
+            <div id="janela-senha" class="janela-hacker hidden">
+                <div class="barra-janela">
+                    <span>SECURE_FOLDER // ENCRYPTION: AES-256</span>
+                    <button class="btn-fechar" onclick="fecharPasta()">X</button>
+                </div>
+                <div class="conteudo-janela">
+                    <p>This directory is protected.</p>
+                    <p>ENTER ACCESS KEY:</p>
+                    <input type="text" id="senha-pasta" autocomplete="off" placeholder="PASSWORD">
+                    <br><br>
+                    <button class="btn-unlock" onclick="verificarSenhaPasta()">DECRYPT</button>
+                    <p id="msg-erro-pasta" class="hidden erro-texto">ACCESS DENIED - SANITY CRITICAL</p>
+                </div>
+            </div>
+
         </div>
 
     </main>

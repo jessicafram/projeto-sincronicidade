@@ -1,4 +1,9 @@
-/* Reset Básico */
+/* =========================================
+   ARQUIVO: css/style.css (Completo v2.0)
+   PROJETO: Project Synchronicity
+   ========================================= */
+
+/* --- 1. RESET BÁSICO --- */
 * {
     margin: 0;
     padding: 0;
@@ -14,7 +19,7 @@ body {
     background-color: #000;
 }
 
-/* --- MODO CLEAN (A Fachada) --- */
+/* --- 2. MODO CLEAN (A Fachada / Intro) --- */
 .modo-clean {
     background-color: #f0f2f5;
     color: #333;
@@ -72,12 +77,13 @@ body {
     background-color: #333;
 }
 
-/* --- MODO TERROR (O Terminal) --- */
+/* --- 3. MODO TERROR (O Terminal) --- */
 .modo-terror {
     background-color: #0a0a0a;
     background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
     color: #33ff00;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    /* Fonte Hacker */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -97,7 +103,6 @@ body {
     border: 1px solid #33ff00;
     box-shadow: 0 0 20px rgba(51, 255, 0, 0.2);
     overflow-y: auto;
-    /* Permite rolar se o texto for longo */
     font-size: 1.1rem;
     line-height: 1.6;
     text-shadow: 0 0 5px #33ff00;
@@ -119,17 +124,13 @@ body {
     }
 }
 
-/* --- ESTILO DO ENIGMA (A Carta) --- */
+/* --- 4. ESTILO DO ENIGMA (A Carta) --- */
 .img-pista {
     display: block;
-    /* Transforma em bloco para poder centralizar */
     margin: 0 auto 15px auto;
-    /* Centraliza horizontalmente e mantem margem inferior */
     max-width: 100%;
     max-height: 400px;
-    /* border: 1px solid #33ff00;  <-- SUGESTÃO: Apague essa borda verde também para ficar mais limpo */
     opacity: 1;
-
     margin-bottom: 15px;
 }
 
@@ -149,7 +150,7 @@ body {
     border: none;
     border-bottom: 2px solid #33ff00;
     color: #33ff00;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
     font-size: 1.5rem;
     width: 100px;
     outline: none;
@@ -161,7 +162,7 @@ body {
     margin-top: 15px;
 }
 
-/* --- EFEITOS ESPECIAIS (Glitch & Noise) --- */
+/* --- 5. EFEITOS ESPECIAIS (Glitch & Noise) --- */
 #tv-noise {
     position: fixed;
     top: 0;
@@ -225,34 +226,222 @@ body {
     }
 }
 
-/* --- ESTILIZAÇÃO DA BARRA DE ROLAGEM (Scrollbar Hacker) --- */
-/* Funciona no Chrome, Edge e Safari */
-
-/* Largura da barra */
+/* --- 6. BARRA DE ROLAGEM HACKER --- */
 ::-webkit-scrollbar {
     width: 10px;
 }
 
-/* O "trilho" (fundo da barra) */
 ::-webkit-scrollbar-track {
     background: #0a0a0a;
-    /* Preto do fundo */
     border-left: 1px solid #33ff00;
-    /* Linha verde sutil na esquerda */
 }
 
-/* O "polegar" (a parte que você arrasta) */
 ::-webkit-scrollbar-thumb {
     background: #33ff00;
-    /* Verde terminal */
     border-radius: 5px;
-    /* Bordas arredondadas */
 }
 
-/* Quando passa o mouse no "polegar" */
 ::-webkit-scrollbar-thumb:hover {
     background: #26c200;
-    /* Um verde um pouco mais escuro */
     box-shadow: 0 0 5px #33ff00;
-    /* Brilho */
+}
+
+
+/* =================================================================
+   --- 7. CENA DAS REGRAS (THE ENTITY) - CORREÇÃO DE CAMADAS ---
+   ================================================================= */
+
+/* Fundo Preto Total da Tela */
+#rules-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    z-index: 15;
+    overflow: hidden;
+}
+
+/* A MOLDURA (Agora quase tela cheia) */
+.rules-content {
+    position: relative;
+
+    /* MUDANÇA AQUI: Tamanho baseado na tela do jogador */
+    width: 85vw;
+    /* Ocupa 85% da largura da tela */
+    height: 85vh;
+    /* Ocupa 85% da altura da tela */
+
+    /* Opcional: Limite máximo para não ficar exagerado em monitores gigantes */
+    max-width: 1600px;
+
+    /* Borda Verde Neon */
+    border: 2px solid #33ff00;
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(51, 255, 0, 0.4);
+    /* Aumentei um pouco o brilho */
+
+    /* Fundo transparente */
+    background-color: transparent;
+
+    z-index: 20;
+    /* Fica acima da tela preta */
+}
+
+/* O RECORTE (Topo do Sanduíche) */
+/* Este fundo preto tapa o centro das ondas, fazendo parecer que saem de trás */
+.crop-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    /* Corta a imagem */
+    border-radius: 18px;
+    background-color: #000;
+    z-index: 5;
+    /* Fica ACIMA das ondas (que serão z-index 1) */
+}
+
+/* A Imagem da Entidade */
+#entity-face {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.2);
+    /* Zoom para esconder marca d'água */
+    filter: sepia(1) hue-rotate(50deg) saturate(2);
+}
+
+/* AS ONDAS SONORAS (Recheio do Sanduíche) */
+.rules-content::before,
+.rules-content::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Centraliza */
+
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    /* Círculo */
+    border: 3px solid rgba(51, 255, 0, 0.8);
+    /* Verde */
+
+    /* CORREÇÃO: Z-Index positivo (1), mas menor que o crop-container (5) */
+    z-index: 1;
+
+    opacity: 0;
+    /* Começa invisível */
+}
+
+/* A ANIMAÇÃO DAS ONDAS */
+@keyframes onda-sonora {
+    0% {
+        width: 80%;
+        height: 80%;
+        opacity: 1;
+        border-width: 4px;
+    }
+
+    100% {
+        width: 250%;
+        /* Expande para fora */
+        height: 250%;
+        opacity: 0;
+        border-width: 1px;
+    }
+}
+
+/* GATILHOS DA ANIMAÇÃO (Ativados pelo JS) */
+
+/* Ativa as ondas quando a classe .pulsando é adicionada na moldura */
+.rules-content.pulsando::before {
+    animation: onda-sonora 2s infinite ease-out;
+}
+
+.rules-content.pulsando::after {
+    animation: onda-sonora 2s infinite ease-out 0.6s;
+    /* Com atraso */
+}
+
+/* Faz a imagem tremer junto */
+.rules-content.pulsando #entity-face {
+    animation: tremor-leve 0.2s ease-in-out;
+}
+
+@keyframes tremor-leve {
+
+    0%,
+    100% {
+        transform: scale(1.2);
+    }
+
+    50% {
+        transform: scale(1.25);
+        filter: brightness(1.5);
+    }
+}
+
+/* --- ESTILO DAS LEGENDAS --- */
+.legenda-style {
+    position: absolute;
+    bottom: 5%;
+    /* Fica na parte de baixo do vídeo */
+    width: 100%;
+    text-align: center;
+    color: #33ff00;
+    /* Verde Hacker */
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Fundo preto semi-transparente para leitura */
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.5rem;
+    padding: 10px;
+    z-index: 30;
+    /* Fica acima do vídeo */
+    text-shadow: 0 0 5px #33ff00;
+    pointer-events: none;
+    /* O mouse passa direto por ela */
+}
+
+/* --- ESTILO DO DESKTOP (A Próxima Fase) --- */
+.mode-desktop {
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    /* Um fundo azul bem escuro estilo Windows antigo ou Linux hacker */
+    background: radial-gradient(circle, #1a1a1a 0%, #000000 100%);
+    color: white;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-bar {
+    background-color: #333;
+    color: #33ff00;
+    padding: 5px 15px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #33ff00;
+}
+
+.desktop-area {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.icon-folder {
+    text-align: center;
+    cursor: pointer;
+    width: 100px;
+    color: #ccc;
+}
+
+.icon-folder:hover {
+    background-color: rgba(51, 255, 0, 0.2);
+    border-radius: 5px;
+    color: #33ff00;
 }
