@@ -10,7 +10,8 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Courier+Prime&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -24,7 +25,7 @@
             <h2 class="subtitulo-clean">Neural Stability Assessment - Phase 1</h2>
             <p class="texto-aviso">
                 Please use headphones for auditory calibration.<br>
-                By clicking initiate, you acknowledge no history of epilepsy or severe paranoia.
+                By clicking initiate, you acknowledge no history of epilepsy.
             </p>
             <button id="btn-iniciar" class="btn-clean">INITIATE SESSION</button>
         </div>
@@ -34,15 +35,12 @@
                 <div class="crop-container">
                     <video id="entity-face" src="assets/img/intro_terror.mp4" loop muted playsinline></video>
                 </div>
-
                 <div id="legenda-container" class="legenda-style"></div>
-
             </div>
         </div>
 
         <div id="terminal-screen" class="hidden">
             <div id="terminal-content"></div>
-
             <div id="puzzle-container" class="hidden">
                 <br>
                 <img src="assets/img/carta.png" alt="Cipher Manuscript" class="img-pista">
@@ -52,7 +50,7 @@
                     <span class="prompt">></span>
                     <input type="text" id="senha-input" maxlength="4" autocomplete="off">
                 </div>
-                <p id="mensagem-erro" class="hidden">INVALID DATA. INSTABILITY INCREASED.</p>
+                <p id="mensagem-erro" class="hidden">INVALID DATA.</p>
             </div>
             <span class="cursor-pisca">_</span>
         </div>
@@ -61,43 +59,125 @@
 
             <div class="top-bar">
                 <span>SYSTEM_ROOT // USER: 409</span>
-
-                <div id="sanity-container" style="display: flex; align-items: center; gap: 10px;">
+                <div id="sanity-container">
                     <span>SANITY:</span>
-                    <div style="width: 150px; height: 15px; border: 1px solid #33ff00; padding: 2px;">
-                        <div id="sanity-bar"
-                            style="width: 100%; height: 100%; background-color: #33ff00; transition: width 0.5s;"></div>
+                    <div class="bar-bg">
+                        <div id="sanity-bar"></div>
                     </div>
                     <span id="sanity-text">100%</span>
                 </div>
-
                 <span id="relogio">00:00:00</span>
             </div>
 
             <div class="desktop-area">
-                <div class="icon-folder" onclick="abrirPastaConfidencial()"> <img
-                        src="https://cdn-icons-png.flaticon.com/512/3767/3767084.png" width="50">
+                <div class="icon-folder" onclick="abrirPastaConfidencial()">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3767/3767084.png" width="50">
                     <p>CONFIDENTIAL</p>
+                </div>
+
+                <div class="icon-folder" onclick="abrirAppCameras()">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3616/3616927.png" width="50">
+                    <p>SEC_FEED</p>
+                </div>
+                <div class="icon-folder" onclick="abrirJanelaHelp()">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2965/2965335.png" width="50">
+                    <p>HELP_ME.txt</p>
                 </div>
             </div>
 
             <div id="janela-senha" class="janela-hacker hidden">
                 <div class="barra-janela">
-                    <span>SECURE_FOLDER // ENCRYPTION: AES-256</span>
+                    <span>SECURE_FOLDER // AES-256</span>
                     <button class="btn-fechar" onclick="fecharPasta()">X</button>
                 </div>
-                <div class="conteudo-janela">
-                    <p>This directory is protected.</p>
+                <div class="conteudo-janela center-content">
                     <p>ENTER ACCESS KEY:</p>
                     <input type="text" id="senha-pasta" autocomplete="off" placeholder="PASSWORD">
                     <br><br>
                     <button class="btn-unlock" onclick="verificarSenhaPasta()">DECRYPT</button>
-                    <p id="msg-erro-pasta" class="hidden erro-texto">ACCESS DENIED - SANITY CRITICAL</p>
+                    <p id="msg-erro-pasta" class="hidden erro-texto">ACCESS DENIED</p>
+                </div>
+            </div>
+
+            <div id="janela-relatorio" class="janela-hacker hidden relatorio-size">
+                <div class="barra-janela">
+                    <span>CLINICAL_REPORT_409.txt</span>
+                    <button class="btn-fechar" onclick="fecharRelatorio()">X</button>
+                </div>
+                <div class="conteudo-janela text-left">
+                    <p class="report-header">
+                        <strong>PATIENT:</strong> SUBJECT #409<br>
+                        <strong>DIAGNOSIS:</strong> ACUTE PARANOIA / DISSOCIATIVE REALITY<br>
+                        <strong>CURRENT LOCATION:</strong> ISOLATION WARD 2B
+                    </p>
+
+                    <p><strong>CLINICAL OBSERVATIONS:</strong><br>
+                        The patient exhibits severe <strong>auditory illusions</strong>. He claims to be guided by a
+                        "digital entity" or "The System".
+                        He interprets random noise as coded messages.</p>
+                    <br>
+                    <p><strong>INCIDENT LOG:</strong><br>
+                        Subject became violent when denied access to a computer terminal.
+                        He screams that "The Synchronization" must be completed.
+                        Staff is advised to monitor him remotely at all times.</p>
+
+                    <div class="security-note">
+                        <p style="color: #ff3333;"><strong>// SECURITY ALERT:</strong></p>
+                        <p>Visual confirmation required immediately.</p>
+                        <p>Access Cell 2B Camera Feed using Code:</p>
+                        <h2 class="code-highlight">8824</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div id="janela-cameras" class="janela-hacker hidden camera-window-size">
+                <div class="barra-janela">
+                    <span>SECURITY_FEED_v2.0</span>
+                    <button class="btn-fechar" onclick="fecharAppCameras()">X</button>
+                </div>
+
+                <div id="camera-login" class="conteudo-janela center-content">
+                    <p>RESTRICTED AREA</p>
+                    <p>ENTER SECURITY CODE:</p>
+                    <input type="text" id="senha-camera" autocomplete="off" maxlength="4" placeholder="CODE">
+                    <br><br>
+                    <button class="btn-unlock" onclick="verificarSenhaCamera()">CONNECT</button>
+                    <p id="msg-erro-camera" class="hidden erro-texto">INVALID CODE</p>
+                </div>
+
+                <div id="camera-feed" class="conteudo-janela hidden no-padding">
+                    <div class="cam-display">
+                        <div class="scanline-overlay"></div>
+
+                        <div id="static-overlay"></div>
+
+                        <p class="cam-label">CAM <span id="cam-number">01</span> [LIVE]</p>
+                        <img id="img-cam-display" src="assets/img/cam1.jpeg" alt="NO SIGNAL...">
+
+                    </div>
+                    <div class="cam-controls">
+                        <button onclick="mudarCam(1)">CAM 01</button>
+                        <button onclick="mudarCam(2)">CAM 02</button>
+                        <button onclick="mudarCam(3)">CAM 03</button>
+                    </div>
+                </div>
+            </div>
+            <div id="janela-help" class="janela-hacker hidden">
+                <div class="barra-janela">
+                    <span>HELP_ME.txt [ENCRYPTED]</span>
+                    <button class="btn-fechar" onclick="fecharJanelaHelp()">X</button>
+                </div>
+                <div class="conteudo-janela center-content">
+                    <p>WARNING: CORRUPTED DATA</p>
+                    <p>ENTER DECRYPTION KEY:</p>
+                    <input type="text" id="senha-help" autocomplete="off" placeholder="PASSWORD">
+                    <br><br>
+                    <button class="btn-unlock" onclick="verificarSenhaHelp()">DECRYPT</button>
+                    <p id="msg-erro-help" class="hidden erro-texto">INCORRECT KEY</p>
                 </div>
             </div>
 
         </div>
-
     </main>
 
     <script src="js/game.js"></script>
