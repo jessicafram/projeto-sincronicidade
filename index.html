@@ -83,6 +83,10 @@
                     <img src="https://cdn-icons-png.flaticon.com/512/2965/2965335.png" width="50">
                     <p>HELP_ME.txt</p>
                 </div>
+                <div class="icon-folder" onclick="abrirJanelaAudio()">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3050/3050525.png" width="50">
+                    <p>CHAT_LOG_409.log</p>
+                </div>
             </div>
 
             <div id="janela-senha" class="janela-hacker hidden">
@@ -174,6 +178,42 @@
                     <br><br>
                     <button class="btn-unlock" onclick="verificarSenhaHelp()">DECRYPT</button>
                     <p id="msg-erro-help" class="hidden erro-texto">INCORRECT KEY</p>
+                </div>
+            </div>
+            <div id="janela-audio" class="janela-hacker hidden">
+                <div class="barra-janela">
+                    <span>SECURE_CHAT_LOG // ENCRYPTED</span>
+                    <button class="btn-fechar" onclick="fecharJanelaAudio()">X</button>
+                </div>
+                <div class="conteudo-janela text-left">
+                    <p style="color: cyan;">[SYSTEM]: Recovered Log Fragment...</p>
+                    <br>
+                    <p><strong>DR. VANCE:</strong> O 409 sabe demais. A sincronização falhou.</p>
+                    <p><strong>UNKNOWN:</strong> Procedimento?</p>
+                    <p><strong>DR. VANCE:</strong> Desligamento total. Delete o registro da sessão.</p>
+                    <br>
+                    <div class="security-note" style="border-color: cyan;">
+                        <p>ATTACHMENT: session_409.wav</p>
+
+                        <audio controls style="width: 100%; margin-top: 10px;">
+                            <source src="assets/audio/session_409.wav" type="audio/wav">
+                            Seu navegador não suporta áudio.
+                        </audio>
+
+                        <p style="font-size: 0.8rem; color: #888; margin-top: 5px;">*Hint: Spectral Analysis Required
+                        </p>
+                    </div>
+
+                    <hr style="border-color: #33ff00; margin: 20px 0;">
+
+                    <div class="center-content">
+                        <p style="color: red;">⚠️ CONFIRM DELETION ⚠️</p>
+                        <p>ENTER SECURITY WORD:</p>
+                        <input type="text" id="senha-audio" autocomplete="off" placeholder="PASSWORD">
+                        <br><br>
+                        <button class="btn-unlock" onclick="verificarSenhaAudio()">DELETE RECORD</button>
+                        <p id="msg-erro-audio" class="hidden erro-texto">ACCESS DENIED</p>
+                    </div>
                 </div>
             </div>
 

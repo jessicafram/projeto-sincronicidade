@@ -7,6 +7,7 @@ const SENHA_TERMINAL = "1666";
 const SENHA_PASTA = "409";
 const SENHA_CAMERAS = "8824"; // Código descoberto no relatório
 const SENHA_HELP = "MORGUE";
+const SENHA_AUDIO = "LIAR";
 
 let sanidadeAtual = 100;
 let glitchIntervalo; // Controle do loop de interferência
@@ -46,6 +47,9 @@ const tvNoise = document.getElementById('tv-noise');
 const janelaHelp = document.getElementById('janela-help');
 const inputSenhaHelp = document.getElementById('senha-help');
 const msgErroHelp = document.getElementById('msg-erro-help');
+const janelaAudio = document.getElementById('janela-audio');
+const inputSenhaAudio = document.getElementById('senha-audio');
+const msgErroAudio = document.getElementById('msg-erro-audio');
 
 // Telas Principais
 const introScreen = document.getElementById('intro-screen');
@@ -333,5 +337,52 @@ window.verificarSenhaHelp = function () {
         reduzirSanidade(10); // Punição por erro!
         janelaHelp.classList.add('glitch-anim');
         setTimeout(() => janelaHelp.classList.remove('glitch-anim'), 500);
+    }
+};
+// --- LÓGICA DO ARQUIVO AUDIO_CLUE.txt (EPISÓDIO 05) ---
+window.abrirJanelaAudio = function () {
+    janelaAudio.classList.remove('hidden');
+    inputSenhaAudio.value = "";
+    msgErroAudio.classList.add('hidden');
+    inputSenhaAudio.focus();
+}
+
+window.fecharJanelaAudio = function () {
+    janelaAudio.classList.add('hidden');
+}
+
+window.verificarSenhaAudio = function () {
+    if (inputSenhaAudio.value.trim().toUpperCase() === SENHA_AUDIO) {
+        audioSucesso.play();
+
+        // Conteúdo de Sucesso (Em Inglês)
+        janelaAudio.querySelector('.conteudo-janela').innerHTML = `
+            <div class="center-content">
+                <h2 style="color: #00ff00; letter-spacing: 2px;">ACCESS GRANTED</h2>
+                <br>
+                <p class="text-left" style="font-family: 'Share Tech Mono', monospace;">
+                    > COMMAND: DELETE RECORD<br>
+                    > TARGET: session_409.wav<br>
+                    > PROCESSING...<br>
+                    > [██████████] 100%<br>
+                </p>
+                <br>
+                <p style="color: cyan; border: 1px solid cyan; padding: 10px;">
+                    <strong>SYSTEM MESSAGE:</strong><br>
+                    Evidence deleted successfully.<br>
+                    Subject 409 memory purge initiated.<br>
+                    Dr. Vance has been notified.
+                </p>
+                <br><br>
+                <button class="btn-unlock" onclick="fecharJanelaAudio()">TERMINATE SESSION</button>
+            </div>
+        `;
+    } else {
+        // Erro: Tira sanidade e faz glitch
+        audioErro.play();
+        msgErroAudio.classList.remove('hidden');
+        reduzirSanidade(15); // Errar aqui custa caro!
+        janelaAudio.classList.add('glitch-anim');
+        setTimeout(() => janelaAudio.classList.remove('glitch-anim'), 500);
     }
 };
