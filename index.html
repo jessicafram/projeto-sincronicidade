@@ -10,7 +10,8 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Courier+Prime&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Creepster&family=Share+Tech+Mono&family=Courier+Prime&display=swap"
         rel="stylesheet">
 </head>
 
@@ -152,12 +153,9 @@
                 <div id="camera-feed" class="conteudo-janela hidden no-padding">
                     <div class="cam-display">
                         <div class="scanline-overlay"></div>
-
                         <div id="static-overlay"></div>
-
                         <p class="cam-label">CAM <span id="cam-number">01</span> [LIVE]</p>
                         <img id="img-cam-display" src="assets/img/cam1.jpeg" alt="NO SIGNAL...">
-
                     </div>
                     <div class="cam-controls">
                         <button onclick="mudarCam(1)">CAM 01</button>
@@ -166,20 +164,7 @@
                     </div>
                 </div>
             </div>
-            <div id="janela-help" class="janela-hacker hidden">
-                <div class="barra-janela">
-                    <span>HELP_ME.txt [ENCRYPTED]</span>
-                    <button class="btn-fechar" onclick="fecharJanelaHelp()">X</button>
-                </div>
-                <div class="conteudo-janela center-content">
-                    <p>WARNING: CORRUPTED DATA</p>
-                    <p>ENTER DECRYPTION KEY:</p>
-                    <input type="text" id="senha-help" autocomplete="off" placeholder="PASSWORD">
-                    <br><br>
-                    <button class="btn-unlock" onclick="verificarSenhaHelp()">DECRYPT</button>
-                    <p id="msg-erro-help" class="hidden erro-texto">INCORRECT KEY</p>
-                </div>
-            </div>
+
             <div id="janela-audio" class="janela-hacker hidden">
                 <div class="barra-janela">
                     <span>SECURE_CHAT_LOG // ENCRYPTED</span>
@@ -188,16 +173,16 @@
                 <div class="conteudo-janela text-left">
                     <p style="color: cyan;">[SYSTEM]: Recovered Log Fragment...</p>
                     <br>
-                    <p><strong>DR. VANCE:</strong> O 409 sabe demais. A sincronização falhou.</p>
-                    <p><strong>UNKNOWN:</strong> Procedimento?</p>
-                    <p><strong>DR. VANCE:</strong> Desligamento total. Delete o registro da sessão.</p>
+                    <p><strong>DR. VANCE:</strong> Subject 409 knows too much. Synchronization failed.</p>
+                    <p><strong>UNKNOWN:</strong> Protocol?</p>
+                    <p><strong>DR. VANCE:</strong> Total shutdown. Delete the session record.</p>
                     <br>
                     <div class="security-note" style="border-color: cyan;">
                         <p>ATTACHMENT: session_409.wav</p>
 
                         <audio controls style="width: 100%; margin-top: 10px;">
                             <source src="assets/audio/session_409.wav" type="audio/wav">
-                            Seu navegador não suporta áudio.
+                            Your browser does not support the audio element.
                         </audio>
 
                         <p style="font-size: 0.8rem; color: #888; margin-top: 5px;">*Hint: Spectral Analysis Required
@@ -218,6 +203,30 @@
             </div>
 
         </div>
+        <div id="janela-help" class="janela-hacker hidden">
+            <div class="barra-janela">
+                <span>HELP_ME.txt [ENCRYPTED]</span>
+                <button class="btn-fechar" onclick="fecharJanelaHelp()">X</button>
+            </div>
+            <div class="conteudo-janela center-content">
+                <p>WARNING: CORRUPTED DATA</p>
+                <p>ENTER DECRYPTION KEY:</p>
+                <input type="text" id="senha-help" autocomplete="off" placeholder="PASSWORD">
+                <br><br>
+                <button class="btn-unlock" onclick="verificarSenhaHelp()">DECRYPT</button>
+                <p id="msg-erro-help" class="hidden erro-texto">INCORRECT KEY</p>
+            </div>
+        </div>
+
+        <div id="icone-diario" class="hidden" onclick="abrirJanelaHelp()">
+            <img src="https://cdn-icons-png.flaticon.com/512/2312/2312953.png" width="60">
+            <p class="ghost-text">HELP...</p>
+        </div>
+
+        <audio id="audio-fantasma" loop>
+            <source src="assets/audio/ghost_breath.mp3" type="audio/mpeg">
+        </audio>
+
     </main>
 
     <script src="js/game.js"></script>
